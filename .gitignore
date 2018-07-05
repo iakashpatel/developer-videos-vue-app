@@ -6,6 +6,7 @@ yarn-error.log*
 
 # openode deploy file
 .openode
+
 # Editor directories and files
 .idea
 .vscode
