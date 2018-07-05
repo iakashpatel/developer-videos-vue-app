@@ -6,13 +6,6 @@
     </p>
     <br/>
 
-    <div v-if="isError === false">
-      <p class="message" style="background-color:#4fc08d;"> Yay! Video Added! :D </p>
-    </div>
-    <div v-if="isError">
-      <p class="message" style="background-color: red;"> Ops! Something Went Wrong :( </p>
-    </div>
-
     <form @submit.prevent="handleSubmit" class="add-video-form center">
       <label class="label">
         Title:
@@ -58,8 +51,7 @@ export default {
       },
       categories: null,
       errors: [],
-      message: 'Add Video',
-      isError: null
+      message: 'Add Video'
     }
   },
   mounted(){
@@ -88,15 +80,32 @@ export default {
          })
          .then((response) => {
            console.log(response);
-           this.isError = false;
+           this.success();
+           this.$router.push('/all-videos');
          })
          .catch((error) => {
-           console.log(error);
-           this.isError = true;
+            console.log(error);
+            this.somethingWrong();
          });
       } else {
-        this.isError = true;
+        this.somethingWrong();
       }
+    },
+    success(){
+      this.$swal({
+        position: 'center',
+        type: 'success',
+        title: 'Video has been added',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    },
+    somethingWrong() {
+      this.$swal({
+        type: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!'
+      })
     }
   }
 }

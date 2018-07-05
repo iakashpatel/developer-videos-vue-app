@@ -14,6 +14,7 @@
             <router-link v-bind:to="{ path: '/edit-video/' + video.id }">
               <button>Edit</button>
             </router-link>
+            <button @click="showAlert(video.id)">Delete</button>
             </div>
           </li>
         </ul>
@@ -46,17 +47,8 @@ export default {
 
   // Fetches posts when the component is created.
   created() {
-    //1- axios.get(`http://demo2991721.mockable.io/api/videos`)
-    axios.get(`${process.env.API_URL}/api/videos`)
-    .then(response => {
-      console.log(response.data.date);
-      // JSON responses are automatically parsed.
-      this.videos = response.data.data;
-      //1- this.videos = response.data.video;
-    })
-    .catch(e => {
-      this.errors.push(e)
-    })
+
+    this.addVideo();
 
     axios.get(`${process.env.API_URL}/api/categories`)
     .then(response => {
@@ -74,8 +66,55 @@ export default {
     // } catch (e) {
     //   this.errors.push(e)
     // }
+  },
+
+  methods: {
+    // deleteVideo: function (videoId) {
+
+    // },
+
+    addVideo: function() {
+      //1- axios.get(`http://demo2991721.mockable.io/api/videos`)
+      axios.get(`${process.env.API_URL}/api/videos`)
+      .then(response => {
+        console.log(response.data.date);
+        // JSON responses are automatically parsed.
+        this.videos = response.data.data;
+        //1- this.videos = response.data.video;
+      })
+      .catch(e => {
+        this.errors.push(e)
+      })
+    },
+    showAlert(videoId){
+      this.$swal({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.value) {
+          axios.delete(`${process.env.API_URL}/api/videos/${videoId}`)
+          .then(response => {
+            this.$swal(
+              'Deleted!',
+              'Your video has been deleted.',
+              'success'
+            )
+            this.addVideo();
+          })
+          .catch(e => {
+            this.errors.push(e)
+          })
+        }
+      })
+    }
   }
 }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
