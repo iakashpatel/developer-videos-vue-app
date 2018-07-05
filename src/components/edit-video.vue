@@ -71,13 +71,16 @@ export default {
       this.errors.push(e)
     })
 
-    // axios.get(`${process.env.API_URL}/api/videos/${this.$route.params.id}`)
-    // .then(response => {
-    //   this.submitedData.id = response.data.data
-    // })
-    // .catch(e => {
-    //   this.errors.push(e)
-    // })
+    axios.get(`${process.env.API_URL}/api/videos/${this.$route.params.id}`)
+    .then(response => {
+      console.log('id', response.data);
+      this.submitedData.id = `https://www.youtube.com/watch?v=`+ response.data.data.id;
+      this.submitedData.title = response.data.data.title;
+      this.submitedData.category_id = response.data.data.category_id;
+    })
+    .catch(e => {
+      this.errors.push(e)
+    })
 
   },
   methods: {
