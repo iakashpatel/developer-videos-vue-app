@@ -1,5 +1,5 @@
 <template>
-  <div class="add-video">
+  <div class="edit-video">
     <h2>{{ title }}</h2>
     <p>Found a useful video for this community ? then why not Submit it in appropriate category and help other fellow developers?
       <br/>Submit form below:
@@ -47,10 +47,10 @@
 import axios from 'axios';
 
 export default {
-  name: 'add-video',
+  name: 'edit-video',
   data () {
     return {
-      title: 'Submit Helpful Video',
+      title: 'Edit Video Information',
       submitedData: {
         id: '',
         title: '',
@@ -58,7 +58,7 @@ export default {
       },
       categories: null,
       errors: [],
-      message: 'Add Video',
+      message: 'Edit Video',
       isError: null
     }
   },
@@ -70,6 +70,15 @@ export default {
     .catch(e => {
       this.errors.push(e)
     })
+
+    // axios.get(`${process.env.API_URL}/api/videos/${this.$route.params.id}`)
+    // .then(response => {
+    //   this.submitedData.id = response.data.data
+    // })
+    // .catch(e => {
+    //   this.errors.push(e)
+    // })
+
   },
   methods: {
     getQueryString( field, url ) {
@@ -83,7 +92,7 @@ export default {
       data1.id = this.getQueryString('v', this.submitedData.id);
 
       if(data1.id){
-        axios.post(`${process.env.API_URL}/api/videos`, {
+        axios.put(`${process.env.API_URL}/api/videos/${this.$route.params.id}`, {
          "id": data1.id, "title": data1.title, "category_id": data1.category_id
          })
          .then((response) => {

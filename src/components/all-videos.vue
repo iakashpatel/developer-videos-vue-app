@@ -8,7 +8,12 @@
         <ul class="list" v-bind:v-if="videos && videos.length">
           <li class="item" v-for="video of videos" :key="video.id">
             <div v-if="video.category_id === category.id">
-            <router-link v-bind:to="{ path: '/video/' + video.id }">{{video.title}}</router-link>
+            <router-link v-bind:to="{ path: '/video/' + video.id }">
+              {{video.title}}
+            </router-link>
+            <router-link v-bind:to="{ path: '/edit-video/' + video.id }">
+              <button>Edit</button>
+            </router-link>
             </div>
           </li>
         </ul>
@@ -44,16 +49,23 @@ export default {
     //1- axios.get(`http://demo2991721.mockable.io/api/videos`)
     axios.get(`${process.env.API_URL}/api/videos`)
     .then(response => {
-      console.log(response.data.videos);
+      console.log(response.data.date);
       // JSON responses are automatically parsed.
-      this.videos = response.data.data.video;
-      this.categories = response.data.data.category;
+      this.videos = response.data.data;
       //1- this.videos = response.data.video;
     })
     .catch(e => {
       this.errors.push(e)
     })
 
+    axios.get(`${process.env.API_URL}/api/categories`)
+    .then(response => {
+      console.log(response.data.date);
+      this.categories = response.data.data;
+    })
+    .catch(e => {
+      this.errors.push(e)
+    })
     // async / await version (created() becomes async created())
     //
     // try {

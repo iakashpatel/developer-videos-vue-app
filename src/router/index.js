@@ -5,6 +5,7 @@ import about from '@/components/about'
 import all_videos from '@/components/all-videos'
 import video from '@/components/video'
 import add_video from '@/components/add-video'
+import edit_video from '@/components/edit-video'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/add-video',
       name: 'add-video',
       component: add_video
-    }
+    },
+    {
+      path: '/edit-video/:id',
+      name: 'edit-video',
+      component: edit_video
+    },
   ]
 })
