@@ -1,21 +1,29 @@
 <template>
   <div id="app">
-    <h1>Video App</h1>
-    <div class="nav">
-    <ul>
-     <li><router-link to="/">Home</router-link></li>
-     <li><router-link to="/all-videos">All Videos</router-link></li>
-     <li><router-link to="/add-video">Add Video</router-link></li>
-     <li><router-link to="/about">About</router-link></li>
-    </ul>
-    </div>
-    <div class="content">
+    <b-navbar toggleable="md" type="light" variant="light" sticky>
+      <div>
+      <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+      <b-collapse is-nav id="nav_collapse">
+      <b-navbar-brand href="#">Video App</b-navbar-brand>
+        <b-navbar-nav>
+          <b-nav-item ><router-link to="/">Home</router-link></b-nav-item>
+          <b-nav-item ><router-link to="/all-videos">All Videos</router-link></b-nav-item>
+          <b-nav-item ><router-link to="/add-video">Add Video</router-link></b-nav-item>
+          <b-nav-item ><router-link to="/about">About</router-link></b-nav-item>
+        </b-navbar-nav>
+      </b-collapse>
+      </div>
+    </b-navbar>
+
+    <div>
       <router-view/>
     </div>
     <div class="footer">
       <p> Copyright 2018 - Video App</p>
     </div>
+
   </div>
+
 </template>
 
 <script>
@@ -31,7 +39,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 
 h1, h2 {
@@ -48,7 +55,7 @@ li {
   margin: 0 10px;
 }
 a {
-  color: #2980b9;
+  color: #4fc08d;
   text-decoration: none;
 }
 
@@ -58,6 +65,7 @@ a {
 }
 
 a:hover {
+  color: #178654;
   text-decoration: underline
 }
 
@@ -72,19 +80,30 @@ a:hover {
   background-color: #4fc08d;
   color: #ffffff !important;
 }
-
-.footer {
-  position: fixed;
-  bottom: 0px;
-  width: 100%;
-  overflow: visible;
-  z-index: 99;
-  background-color: #4fc08d;
-  font-weight: bold;
-  font-size: 16px;
-  color: #ffffff;
-  left: 0;
-  height: 45px;
+html {
+  height: 100%;
+  box-sizing: border-box;
 }
 
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
+}
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding-top: 1rem;
+  background-color: #4fc08d;
+}
 </style>
