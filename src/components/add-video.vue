@@ -19,11 +19,11 @@
         category id:
       </label>
       <div v-if="categories && categories.length" class="select-wrap">
-          <select class="select" v-model="submitedData.category_id">
-            <option v-for="category in categories" v-bind:value="category.id">{{ category.name }}</option>
-          </select>
-        </div>
-      <button type="submit">Submit</button>
+        <select class="select" v-model="submitedData.category_id">
+          <option v-for="category in categories" v-bind:value="category.id">{{ category.name }}</option>
+        </select>
+      </div>
+      <button type="submit" class="btn">Submit</button>
     </form>
 
     <br/>
@@ -175,14 +175,12 @@ input, select {
   position: relative;
   z-index: 1;
   padding-right: 40px;
-
   &::-ms-expand {
     display: none;
   }
 }
 .select-wrap {
   position: relative;
-
   &:after {
     position: absolute;
     top: 0;
@@ -206,8 +204,7 @@ button{
   box-sizing: border-box;
   width: 100%;
   outline: none;
-  color: white;
-  background-color: #4fc08d;
+  color: #4fc08d;
   border: solid #4fc08d;
   padding: 10px;
   font-size: 20px;
@@ -215,5 +212,10 @@ button{
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
+}
+
+button:hover {
+  background-color: #4fc08d;
+  color: white;
 }
 </style>
