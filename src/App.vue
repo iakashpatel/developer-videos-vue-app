@@ -1,10 +1,9 @@
 <template>
   <div id="app">
     <b-navbar toggleable="md" type="light" variant="light" sticky>
-      <div>
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-      <b-collapse is-nav id="nav_collapse">
       <b-navbar-brand href="#">Video App</b-navbar-brand>
+      <b-collapse is-nav id="nav_collapse">
         <b-navbar-nav>
           <b-nav-item ><router-link to="/">Home</router-link></b-nav-item>
           <b-nav-item ><router-link to="/all-videos">All Videos</router-link></b-nav-item>
@@ -12,7 +11,6 @@
           <b-nav-item ><router-link to="/about">About</router-link></b-nav-item>
         </b-navbar-nav>
       </b-collapse>
-      </div>
     </b-navbar>
 
     <div>
