@@ -12,9 +12,9 @@
               {{video.title}}
             </router-link>
             <router-link v-bind:to="{ path: '/edit-video/' + video.id }">
-              <button>Edit</button>
+              <button class="btn">Edit</button>
             </router-link>
-            <button @click="showAlert(video.id)">Delete</button>
+            <button @click="showAlert(video.id)" class="btn">Delete</button>
             </div>
           </li>
         </ul>
@@ -69,10 +69,6 @@ export default {
   },
 
   methods: {
-    // deleteVideo: function (videoId) {
-
-    // },
-
     addVideo: function() {
       //1- axios.get(`http://demo2991721.mockable.io/api/videos`)
       axios.get(`${process.env.API_URL}/api/videos`)
@@ -136,5 +132,21 @@ hr {
     border: 0;
     height: 1px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+button{
+  box-sizing: border-box;
+  outline: none;
+  color: #4fc08d;
+  padding: 5px;
+  font-size: 15px;
+  border-radius: 10px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+button:hover {
+  background-color: #4fc08d;
+  color: white;
 }
 </style>
